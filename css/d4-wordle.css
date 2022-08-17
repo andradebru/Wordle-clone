@@ -55,8 +55,16 @@ body {
 }
 
 .tabuleiro {
+  display: flex;
+  flex-flow: column nowrap;
   text-align: center;
   justify-content: bottom;
+}
+
+.linha-tab {
+  display: flex;
+  width: 100%;
+  column-gap: 7px;
 }
 
 .quadrado {
