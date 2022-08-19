@@ -46,7 +46,7 @@ const ouvinteDeTeclas = (event) => {
     console.log("tecla inválida", char);
   } else if (char == "ENTER") {
     validarEntrada();
-    // linha += 1;
+    linha += 1;
   } else if (char == "BACKSPACE") {
     entrada.pop();
     apagaLetra();
@@ -83,13 +83,13 @@ function validarEntrada() {
 
   if (entrada.length == 5) {
     console.log("entrei");
-    for (let index = 0; index < entrada.length; index++) {
-      // const element = array[index];
-      if (entrada[index] == palavraDoDia[index].toUpperCase()) {
+    for (let letra = 0; letra < entrada.length; letra++) {
+      // const element = array[letra];
+      if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
         console.log("oi");
-        let elId = `c${index + 1}l${linha}`;
+        let elId = `c${letra + 1}l${linha}`;
         const el = document.getElementById(elId);
-        el.style.background = "green";
+        el.classList.add("validado");
       } else {
         console.log("nao");
       }
