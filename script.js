@@ -54,6 +54,7 @@ const ouvinteDeTeclas = (event) => {
   } else if (entrada.length == 5) {
     console.log("Só aceita até 5 letras");
     validarEntrada();
+    entrada = [];
   } else {
     entrada.push(char);
     console.log(entrada);
@@ -77,27 +78,20 @@ function validarEntrada() {
   console.log(
     "validar se " + entrada.join("") + " é igual " + palavraDoDia.toUpperCase()
   );
+  if (entrada.length < 5) {
+    window.alert("Sem letras suficientes");
+    i;
+  }
   if (entrada.join("") == palavraDoDia.toUpperCase()) {
     window.alert("Acertou!");
-  }
-
-  if (entrada.length == 5) {
-    console.log("entrei");
+  } else {
     for (let letra = 0; letra < entrada.length; letra++) {
-      // const element = array[letra];
       if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
         console.log("oi");
         let elId = `c${letra + 1}l${linha}`;
         const el = document.getElementById(elId);
         el.classList.add("validado");
-      } else {
-        console.log("nao");
       }
-    }
-
-    if (entrada.length < 5) {
-      window.alert("Sem letras suficientes");
-    } else {
     }
   }
 }
