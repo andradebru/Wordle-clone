@@ -32,6 +32,22 @@ body {
   margin: 2% 25% 2% 25%;
 }
 
+.quadrado {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 5px;
+}
+
+.vazio {
+  border: 2px solid #d3d6da;
+  margin-bottom: 3px;
+}
+
 .validado {
   border: 2px solid #6aaa64;
   background-color: #6aaa64;
@@ -63,24 +79,10 @@ body {
 
 .linha-tab {
   display: flex;
-  width: 100%;
-  column-gap: 7px;
-}
-
-.quadrado {
-  width: auto;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  width: 58px;
-  height: 58px;
-  margin-bottom: 5px;
-}
-
-.vazio {
-  border: 2px solid #d3d6da;
-  margin-bottom: 3px;
+  width: 100%;
+  column-gap: 7px;
 }
 
 .teclado {
