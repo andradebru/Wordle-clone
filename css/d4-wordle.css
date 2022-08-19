@@ -33,7 +33,6 @@ body {
 }
 
 .quadrado {
-  width: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +44,6 @@ body {
 
 .vazio {
   border: 2px solid #d3d6da;
-  margin-bottom: 3px;
 }
 
 .validado {
