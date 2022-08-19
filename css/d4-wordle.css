@@ -39,7 +39,6 @@ body {
   font-size: 32px;
   width: 58px;
   height: 58px;
-  margin-bottom: 5px;
 }
 
 .vazio {
@@ -69,6 +68,7 @@ body {
 }
 
 .tabuleiro {
+  gap: 5px;
   display: flex;
   flex-flow: column nowrap;
   text-align: center;
