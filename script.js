@@ -84,14 +84,28 @@ function validarEntrada() {
     "validar se " + entrada.join("") + " é igual " + palavraDoDia.toUpperCase()
   );
   if (entrada.join("") == palavraDoDia.toUpperCase()) {
+    for (let letra = 0; letra < entrada.length; letra++) {
+      let elId = `c${letra + 1}l${linha}`;
+      const el = document.getElementById(elId);
+      el.classList.add("validado");
+    }
     window.alert("Acertou!");
   } else {
     for (let letra = 0; letra < entrada.length; letra++) {
       if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
-        console.log("oi");
         let elId = `c${letra + 1}l${linha}`;
         const el = document.getElementById(elId);
         el.classList.add("validado");
+      } else if (palavraDoDia.includes(letra)) {
+        // se a letra existe na palavra mas está no lugar errado
+        console.log("oi amarelo");
+        let elId = `c${letra + 1}l${linha}`;
+        const el = document.getElementById(elId);
+        el.classList.add("posicao-errada");
+      } else {
+        let elId = `c${letra + 1}l${linha}`;
+        const el = document.getElementById(elId);
+        el.classList.add("invalido");
       }
     }
   }
