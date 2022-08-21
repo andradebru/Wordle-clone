@@ -45,9 +45,14 @@ const ouvinteDeTeclas = (event) => {
   if (!alfabeto.includes(char)) {
     console.log("tecla inválida", char);
   } else if (char == "ENTER") {
-    validarEntrada();
-    linha += 1;
-    entrada = [];
+    if (entrada.length < 5) {
+      window.alert("Sem letras suficientes");
+      i;
+    } else {
+      validarEntrada();
+      linha += 1;
+      entrada = [];
+    }
   } else if (char == "BACKSPACE") {
     apagaLetra();
     console.log(entrada);
@@ -78,10 +83,6 @@ function validarEntrada() {
   console.log(
     "validar se " + entrada.join("") + " é igual " + palavraDoDia.toUpperCase()
   );
-  if (entrada.length < 5) {
-    window.alert("Sem letras suficientes");
-    i;
-  }
   if (entrada.join("") == palavraDoDia.toUpperCase()) {
     window.alert("Acertou!");
   } else {
