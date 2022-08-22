@@ -76,11 +76,11 @@ function exibeLetra(letra) {
   el.textContent = letra;
 }
 
-function exibeLetraClique(letra) {
-  let elId = `c${entrada.length}l${linha}`;
-  const el = document.getElementById(elId);
-  el.textContent = elId;
-}
+// function exibeLetraClique(letra) {
+//   let elId = `c${entrada.length}l${linha}`;
+//   const el = document.getElementById(elId);
+//   el.textContent = letra;
+// }
 
 function apagaLetra() {
   entrada.pop();
@@ -136,24 +136,18 @@ document.querySelectorAll(".letra").forEach((el) => {
     if (letra == "⌫") {
       letra = "BACKSPACE";
     }
-    exibeLetraClique(letra);
+    exibeLetra(letra);
   });
 });
 
 // Get the modal
 var modal = document.getElementById("modalAcerto");
-
-// Get the button that opens the modal
-//var btn = document.getElementById("myBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   modal.style.display = "none";
 };
-
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target == modal) {
