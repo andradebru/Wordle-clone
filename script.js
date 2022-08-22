@@ -6,9 +6,6 @@ let linha = 1;
 
 let entrada = [];
 
-let elId = `c${entrada.length}l${linha}`;
-const el = document.getElementById(elId);
-
 const ouvinteDeTeclas = (event) => {
   let char = event.key.toUpperCase();
   let alfabeto = [
@@ -50,7 +47,7 @@ const ouvinteDeTeclas = (event) => {
       i;
     } else {
       validarEntrada();
-      linha += 1;
+      linha++; //= 1;
       entrada = [];
     }
   } else if (char == "BACKSPACE") {
