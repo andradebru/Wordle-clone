@@ -47,7 +47,7 @@ const ouvinteDeTeclas = (event) => {
       i;
     } else {
       validarEntrada();
-      linha++; //= 1;
+      linha++;
       entrada = [];
     }
   } else if (char == "BACKSPACE") {
@@ -85,12 +85,9 @@ function validarEntrada() {
       let elId = `c${letra + 1}l${linha}`;
       const el = document.getElementById(elId);
       el.classList.add("validado");
+      modal.style.display = "block"; // mostra o modal quando acerta
+      //TODO uma maneira de bloquear as tentativas depois de acertar
     }
-    //window.alert("Acertou!");
-    // When the user clicks on the button, open the modal
-    btn.onclick = function () {
-      modal.style.display = "block";
-    };
   } else {
     for (let letra = 0; letra < entrada.length; letra++) {
       let elId = `c${letra + 1}l${linha}`;
@@ -114,10 +111,16 @@ function validarEntrada() {
 
 document.body.addEventListener("keydown", ouvinteDeTeclas);
 
+function trataTecla(letra) {
+  textContent;
+}
+
 // tentativa de fazer o teclado funcionar com click
 document.querySelectorAll(".letra").forEach((el) => {
   el.addEventListener("click", function (el) {
     let letra = el.srcElement.textContent;
+    document.getElementsByClassName(letra);
+    el.textContent = letra;
     if (letra == "") {
       letra = "BACKSPACE";
     }
