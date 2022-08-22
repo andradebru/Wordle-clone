@@ -92,16 +92,23 @@ function validarEntrada() {
     window.alert("Acertou!");
   } else {
     for (let letra = 0; letra < entrada.length; letra++) {
+      //TODO: deixar o codigo non Case sensitve
+      let palavraDoDia1 = palavraDoDia.toUpperCase();
       if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
         let elId = `c${letra + 1}l${linha}`;
         const el = document.getElementById(elId);
         el.classList.add("validado");
-      } else if (palavraDoDia.includes(letra)) {
-        // se a letra existe na palavra mas está no lugar errado
-        console.log("oi amarelo");
+      } else if (palavraDoDia1.includes(entrada[letra])) {
         let elId = `c${letra + 1}l${linha}`;
         const el = document.getElementById(elId);
-        el.classList.add("posicao-errada");
+        // se a letra existe na palavra mas está no lugar errado
+        console.log("oi amarelo");
+        // let tentativaLetra = entrada[letra];
+        let tentativaLetraPosicao = entrada[letra];
+        let posicaoRealLetra = palavraDoDia.lastIndexOf(palavraDoDia[letra]);
+        if (tentativaLetraPosicao != posicaoRealLetra) {
+          el.classList.add("posicao-errada");
+        }
       } else {
         let elId = `c${letra + 1}l${linha}`;
         const el = document.getElementById(elId);
@@ -112,3 +119,16 @@ function validarEntrada() {
 }
 
 document.body.addEventListener("keydown", ouvinteDeTeclas);
+
+// document.querySelectorAll(".tecla").forEach((el) => {
+//   el.addEventListener("click", function (el) {
+//     let letra = el.srcElement.textContent;
+//     if (letra == "") {
+//       letra = "BACKSPACE";
+//     }
+//     trataTecla(letra);
+//   });
+// });
+
+// PRA CADA LETRA
+// ADICIONA NA POSICAO 0 DO ARRAY, E A POSICAO ADICIONA NA POSICAO 1
