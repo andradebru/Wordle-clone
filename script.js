@@ -6,6 +6,8 @@ let linha = 1;
 
 let entrada = [];
 
+let tentativas = 6;
+
 const ouvinteDeTeclas = (event) => {
   let char = event.key.toUpperCase();
   let alfabeto = [
@@ -39,6 +41,11 @@ const ouvinteDeTeclas = (event) => {
     "BACKSPACE",
   ];
 
+  if (tentativas == 0) {
+    window.alert("Sem mais tentativas");
+    entrada = console.log("Sem mais tentativas");
+  }
+
   if (!alfabeto.includes(char)) {
     console.log("tecla inválida", char);
   } else if (char == "ENTER") {
@@ -69,6 +76,12 @@ function exibeLetra(letra) {
   el.textContent = letra;
 }
 
+function exibeLetraClique(letra) {
+  let elId = `c${entrada.length}l${linha}`;
+  const el = document.getElementById(elId);
+  el.textContent = elId;
+}
+
 function apagaLetra() {
   entrada.pop();
   let elId = `c${entrada.length + 1}l${linha}`;
@@ -81,11 +94,13 @@ function validarEntrada() {
     "validar se " + entrada.join("") + " é igual " + palavraDoDia.toUpperCase()
   );
   if (entrada.join("") == palavraDoDia.toUpperCase()) {
+    // se a entrada for extamaente a palavra do dia
     for (let letra = 0; letra < entrada.length; letra++) {
       let elId = `c${letra + 1}l${linha}`;
       const el = document.getElementById(elId);
       el.classList.add("validado");
       modal.style.display = "block"; // mostra o modal quando acerta
+      tentativas = 0;
       //TODO uma maneira de bloquear as tentativas depois de acertar
     }
   } else {
@@ -106,25 +121,22 @@ function validarEntrada() {
         el.classList.add("invalido");
       }
     }
+    tentativas--;
   }
 }
 
 document.body.addEventListener("keydown", ouvinteDeTeclas);
 
-function trataTecla(letra) {
-  textContent;
-}
-
 // tentativa de fazer o teclado funcionar com click
 document.querySelectorAll(".letra").forEach((el) => {
   el.addEventListener("click", function (el) {
-    let letra = el.srcElement.textContent;
+    let letra = el.target.textContent;
     document.getElementsByClassName(letra);
     el.textContent = letra;
-    if (letra == "") {
+    if (letra == "⌫") {
       letra = "BACKSPACE";
     }
-    trataTecla(letra);
+    exibeLetraClique(letra);
   });
 });
 
