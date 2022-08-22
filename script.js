@@ -1,6 +1,6 @@
 const palavrasValidas = ["arroz", "amora", "teste"];
 
-const palavraDoDia = "arroz";
+const palavraDoDia = "FESTA";
 
 let linha = 1;
 
@@ -89,29 +89,26 @@ function validarEntrada() {
       const el = document.getElementById(elId);
       el.classList.add("validado");
     }
-    window.alert("Acertou!");
+    //window.alert("Acertou!");
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
   } else {
     for (let letra = 0; letra < entrada.length; letra++) {
-      //TODO: deixar o codigo non Case sensitve
+      let elId = `c${letra + 1}l${linha}`;
+      const el = document.getElementById(elId);
       let palavraDoDia1 = palavraDoDia.toUpperCase();
       if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
-        let elId = `c${letra + 1}l${linha}`;
-        const el = document.getElementById(elId);
         el.classList.add("validado");
       } else if (palavraDoDia1.includes(entrada[letra])) {
-        let elId = `c${letra + 1}l${linha}`;
-        const el = document.getElementById(elId);
         // se a letra existe na palavra mas está no lugar errado
-        console.log("oi amarelo");
-        // let tentativaLetra = entrada[letra];
         let tentativaLetraPosicao = entrada[letra];
         let posicaoRealLetra = palavraDoDia.lastIndexOf(palavraDoDia[letra]);
         if (tentativaLetraPosicao != posicaoRealLetra) {
           el.classList.add("posicao-errada");
         }
       } else {
-        let elId = `c${letra + 1}l${linha}`;
-        const el = document.getElementById(elId);
         el.classList.add("invalido");
       }
     }
@@ -120,15 +117,34 @@ function validarEntrada() {
 
 document.body.addEventListener("keydown", ouvinteDeTeclas);
 
-// document.querySelectorAll(".tecla").forEach((el) => {
-//   el.addEventListener("click", function (el) {
-//     let letra = el.srcElement.textContent;
-//     if (letra == "") {
-//       letra = "BACKSPACE";
-//     }
-//     trataTecla(letra);
-//   });
-// });
+// tentativa de fazer o teclado funcionar com click
+document.querySelectorAll(".letra").forEach((el) => {
+  el.addEventListener("click", function (el) {
+    let letra = el.srcElement.textContent;
+    if (letra == "") {
+      letra = "BACKSPACE";
+    }
+    trataTecla(letra);
+  });
+});
 
-// PRA CADA LETRA
-// ADICIONA NA POSICAO 0 DO ARRAY, E A POSICAO ADICIONA NA POSICAO 1
+// Get the modal
+var modal = document.getElementById("modalAcerto");
+
+// Get the button that opens the modal
+//var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
