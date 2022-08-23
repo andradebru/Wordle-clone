@@ -156,7 +156,7 @@ function validarEntrada() {
       const el = document.getElementById(elId);
       el.classList.add("validado", "rotate-horizontal-center");
       tentativas = 0;
-      botaoTeclado.classList.remove("normal");
+      botaoTeclado.classList.remove("normal", "posicao-errada");
       botaoTeclado.classList.add("validado");
     }
   } else {
@@ -199,7 +199,7 @@ document.querySelectorAll(".letra").forEach((el) => {
     document.getElementsByClassName(letra);
     el.textContent = letra;
     if (letra == "⌫") {
-      letra = "BACKSPACE";
+      apagaLetra();
     } else if (letra == "ENTER") {
       if (entrada.length < 5) {
         window.alert("Sem letras suficientes");
@@ -211,8 +211,8 @@ document.querySelectorAll(".letra").forEach((el) => {
       }
     } else {
       entrada.push(letra);
+      exibeLetra(letra);
     }
-    exibeLetra(letra);
   });
 });
 
