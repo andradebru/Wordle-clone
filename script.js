@@ -1,4 +1,59 @@
-const palavrasValidas = ["arroz", "amora", "teste"];
+const palavrasValidas = [
+  "arroz",
+  "amora",
+  "teste",
+  "sagaz",
+  "âmago",
+  "negro",
+  "êxito",
+  "mexer",
+  "termo",
+  "nobre",
+  "senso",
+  "algoz",
+  "afeto",
+  "plena",
+  "ética",
+  "mútua",
+  "tênue",
+  "sutil",
+  "vigor",
+  "aquém",
+  "fazer",
+  "porém",
+  "audaz",
+  "assim",
+  "sanar",
+  "seção",
+  "inato",
+  "cerne",
+  "fosse",
+  "ideia",
+  "poder",
+  "moral",
+  "desde",
+  "torpe",
+  "muito",
+  "justo",
+  "honra",
+  "fútil",
+  "sobre",
+  "anexo",
+  "quiçá",
+  "razão",
+  "etnia",
+  "ícone",
+  "sonho",
+  "tange",
+  "égide",
+  "lapso",
+  "amigo",
+  "mútuo",
+  "expor",
+  "haver",
+  "hábil",
+  "tempo",
+];
 
 const palavraDoDia = "FESTA";
 
@@ -76,52 +131,53 @@ function exibeLetra(letra) {
   el.textContent = letra;
 }
 
-// function exibeLetraClique(letra) {
-//   let elId = `c${entrada.length}l${linha}`;
-//   const el = document.getElementById(elId);
-//   el.textContent = letra;
-// }
-
 function apagaLetra() {
-  entrada.pop();
-  let elId = `c${entrada.length + 1}l${linha}`;
-  const el = document.getElementById(elId);
-  el.textContent = "";
+  if (entrada.length > 0) {
+    entrada.pop();
+    let elId = `c${entrada.length + 1}l${linha}`;
+    const el = document.getElementById(elId);
+    el.textContent = "";
+  } else {
+    console.log("não há nada para apagar");
+  }
 }
-
 function validarEntrada() {
   console.log(
     "validar se " + entrada.join("") + " é igual " + palavraDoDia.toUpperCase()
   );
-  if (entrada.join("") == palavraDoDia.toUpperCase()) {
-    // se a entrada for extamaente a palavra do dia
-    for (let letra = 0; letra < entrada.length; letra++) {
-      let elId = `c${letra + 1}l${linha}`;
-      const el = document.getElementById(elId);
-      el.classList.add("validado");
-      modal.style.display = "block"; // mostra o modal quando acerta
-      tentativas = 0;
-      //TODO uma maneira de bloquear as tentativas depois de acertar
+  if (palavrasValidas.includes(entrada)) {
+    if (entrada.join("") == palavraDoDia.toUpperCase()) {
+      // se a entrada for extamaente a palavra do dia
+      for (let letra = 0; letra < entrada.length; letra++) {
+        let elId = `c${letra + 1}l${linha}`;
+        const el = document.getElementById(elId);
+        el.classList.add("validado");
+        modal.style.display = "block"; // mostra o modal quando acerta
+        tentativas = 0;
+        //TODO uma maneira de bloquear as tentativas depois de acertar
+      }
+    } else {
+      for (let letra = 0; letra < entrada.length; letra++) {
+        let elId = `c${letra + 1}l${linha}`;
+        const el = document.getElementById(elId);
+        let palavraDoDia1 = palavraDoDia.toUpperCase();
+        if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
+          el.classList.add("validado");
+        } else if (palavraDoDia1.includes(entrada[letra])) {
+          // se a letra existe na palavra mas está no lugar errado
+          let tentativaLetraPosicao = entrada[letra];
+          let posicaoRealLetra = palavraDoDia.lastIndexOf(palavraDoDia[letra]);
+          if (tentativaLetraPosicao != posicaoRealLetra) {
+            el.classList.add("posicao-errada");
+          }
+        } else {
+          el.classList.add("invalido");
+        }
+      }
+      tentativas--;
     }
   } else {
-    for (let letra = 0; letra < entrada.length; letra++) {
-      let elId = `c${letra + 1}l${linha}`;
-      const el = document.getElementById(elId);
-      let palavraDoDia1 = palavraDoDia.toUpperCase();
-      if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
-        el.classList.add("validado");
-      } else if (palavraDoDia1.includes(entrada[letra])) {
-        // se a letra existe na palavra mas está no lugar errado
-        let tentativaLetraPosicao = entrada[letra];
-        let posicaoRealLetra = palavraDoDia.lastIndexOf(palavraDoDia[letra]);
-        if (tentativaLetraPosicao != posicaoRealLetra) {
-          el.classList.add("posicao-errada");
-        }
-      } else {
-        el.classList.add("invalido");
-      }
-    }
-    tentativas--;
+    window.alert("palavra inválida");
   }
 }
 
