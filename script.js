@@ -125,6 +125,7 @@ function exibeLetra(letra) {
   let elId = `c${entrada.length}l${linha}`;
   const el = document.getElementById(elId);
   el.textContent = letra;
+  letra++;
 }
 
 function apagaLetra() {
@@ -197,8 +198,19 @@ document.querySelectorAll(".letra").forEach((el) => {
     let letra = el.target.textContent;
     document.getElementsByClassName(letra);
     el.textContent = letra;
+    entrada.push(letra);
     if (letra == "⌫") {
       letra = "BACKSPACE";
+    }
+    if (letra == "ENTER") {
+      if (entrada.length < 5) {
+        window.alert("Sem letras suficientes");
+        i;
+      } else {
+        validarEntrada();
+        linha++;
+        entrada = [];
+      }
     }
     exibeLetra(letra);
   });
