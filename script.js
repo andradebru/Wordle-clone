@@ -198,11 +198,9 @@ document.querySelectorAll(".letra").forEach((el) => {
     let letra = el.target.textContent;
     document.getElementsByClassName(letra);
     el.textContent = letra;
-    entrada.push(letra);
     if (letra == "⌫") {
       letra = "BACKSPACE";
-    }
-    if (letra == "ENTER") {
+    } else if (letra == "ENTER") {
       if (entrada.length < 5) {
         window.alert("Sem letras suficientes");
         i;
@@ -211,6 +209,8 @@ document.querySelectorAll(".letra").forEach((el) => {
         linha++;
         entrada = [];
       }
+    } else {
+      entrada.push(letra);
     }
     exibeLetra(letra);
   });
