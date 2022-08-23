@@ -56,11 +56,8 @@ const palavrasValidas = [
 ];
 
 const palavraDoDia = "FESTA";
-
 let linha = 1;
-
 let entrada = [];
-
 let tentativas = 6;
 
 const ouvinteDeTeclas = (event) => {
@@ -145,39 +142,35 @@ function validarEntrada() {
   console.log(
     "validar se " + entrada.join("") + " é igual " + palavraDoDia.toUpperCase()
   );
-  if (palavrasValidas.includes(entrada)) {
-    if (entrada.join("") == palavraDoDia.toUpperCase()) {
-      // se a entrada for extamaente a palavra do dia
-      for (let letra = 0; letra < entrada.length; letra++) {
-        let elId = `c${letra + 1}l${linha}`;
-        const el = document.getElementById(elId);
-        el.classList.add("validado");
-        modal.style.display = "block"; // mostra o modal quando acerta
-        tentativas = 0;
-        //TODO uma maneira de bloquear as tentativas depois de acertar
-      }
-    } else {
-      for (let letra = 0; letra < entrada.length; letra++) {
-        let elId = `c${letra + 1}l${linha}`;
-        const el = document.getElementById(elId);
-        let palavraDoDia1 = palavraDoDia.toUpperCase();
-        if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
-          el.classList.add("validado");
-        } else if (palavraDoDia1.includes(entrada[letra])) {
-          // se a letra existe na palavra mas está no lugar errado
-          let tentativaLetraPosicao = entrada[letra];
-          let posicaoRealLetra = palavraDoDia.lastIndexOf(palavraDoDia[letra]);
-          if (tentativaLetraPosicao != posicaoRealLetra) {
-            el.classList.add("posicao-errada");
-          }
-        } else {
-          el.classList.add("invalido");
-        }
-      }
-      tentativas--;
+  if (entrada.join("") == palavraDoDia.toUpperCase()) {
+    // se a entrada for extamaente a palavra do dia
+    for (let letra = 0; letra < entrada.length; letra++) {
+      let elId = `c${letra + 1}l${linha}`;
+      const el = document.getElementById(elId);
+      el.classList.add("validado", "rotate-horizontal-center");
+      modal.style.display = "block"; // mostra o modal quando acerta
+      tentativas = 0;
+      //TODO uma maneira de bloquear as tentativas depois de acertar
     }
   } else {
-    window.alert("palavra inválida");
+    for (let letra = 0; letra < entrada.length; letra++) {
+      let elId = `c${letra + 1}l${linha}`;
+      const el = document.getElementById(elId);
+      let palavraDoDia1 = palavraDoDia.toUpperCase();
+      if (entrada[letra] == palavraDoDia[letra].toUpperCase()) {
+        el.classList.add("validado", "rotate-horizontal-center");
+      } else if (palavraDoDia1.includes(entrada[letra])) {
+        // se a letra existe na palavra mas está no lugar errado
+        let tentativaLetraPosicao = entrada[letra];
+        let posicaoRealLetra = palavraDoDia.lastIndexOf(palavraDoDia[letra]);
+        if (tentativaLetraPosicao != posicaoRealLetra) {
+          el.classList.add("posicao-errada", "rotate-horizontal-center");
+        }
+      } else {
+        el.classList.add("invalido", "rotate-horizontal-center");
+      }
+    }
+    tentativas--;
   }
 }
 
