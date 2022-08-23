@@ -156,7 +156,7 @@ function validarEntrada() {
       el.classList.add("validado", "rotate-horizontal-center");
       tentativas = 0;
       botaoTeclado.classList.remove("normal");
-      botaoTeclado.classList.add("validados");
+      botaoTeclado.classList.add("validado");
     }
   } else {
     for (let letra = 0; letra < entrada.length; letra++) {
